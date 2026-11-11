@@ -1,4 +1,4 @@
-# cool-notifications.nvim
+# fancy-notifications.nvim
 
 ## Overview
 
@@ -6,7 +6,7 @@ This plugin overrides Neovim's `vim.notify` function. Based on the value of `vim
 
 ## Installation
 
-Assuming the plugin is in the _runtimepath_, the setup function can be called with `require("cool-notifications").setup({...})` (or with your preferred plugin manager).  
+Assuming the plugin is in the _runtimepath_, the setup function can be called with `require("fancy-notifications").setup({...})` (or with your preferred plugin manager).  
 
 ## Features
 
