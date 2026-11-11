@@ -17,6 +17,7 @@ Through `opts`, you can configure features:
 - `info_color`: the color used for info notifications (default: `"#44cf38"`)
 - `warn_color`: the color used for warning notifications (default: `"#f8ff36"`)
 - `trace_color`: the color used for trace notifications (default: `"#5d28d1"`)
+- `timeout`: the time in milliseconds before the notification is automatically closed (default: `1000`)
 
 ## AI Usage
 
