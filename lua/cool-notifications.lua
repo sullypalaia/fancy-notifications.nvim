@@ -1,6 +1,21 @@
 local M = {}
 
+local defaults = {
+  debug_color = "#3271a8",
+  error_color = "#b53a46",
+  info_color = "#44cf38",
+  warn_color = "#f8ff36",
+  trace_color = "#5d28d1",
+  timeout = 1000
+}
+
+local config = {}
+
+---@param opts {debug_color: string, error_color: string, info_color: string, warn_color: string, trace_color: string, timeout: number} options
 function M.setup(opts)
+  --merge user options with defaults
+  config = vim.tbl_deep_extend("force", defaults, opts or {})
+
   local pending = {}
   local active = false
   local show_next
@@ -39,15 +54,15 @@ function M.setup(opts)
     --set the border color based on the log level
     local border_color = ""
     if level == vim.log.levels.DEBUG then
-      border_color = "#3271a8"
+      border_color = config.debug_color
     elseif level == vim.log.levels.ERROR then
-      border_color = "#b53a46"
+      border_color = config.error_color
     elseif level == vim.log.levels.INFO then
-      border_color = "#44cf38"
+      border_color = config.info_color
     elseif level == vim.log.levels.WARN then
-      border_color = "#f8ff36"
+      border_color = config.warn_color
     else
-      border_color = "#5d28d1"
+      border_color = config.trace_color
     end
 
     vim.api.nvim_set_hl(0, "BorderColors", { fg = border_color, bg = "NONE" })
@@ -184,7 +199,7 @@ function M.setup(opts)
     animate(true, function()
       vim.defer_fn(function()
         if not finished then animate(false, finish) end
-      end, math.max(0, tonumber(opts.timeout) or 1000))
+      end, math.max(0, tonumber(config.timeout) or 1000))
     end)
   end
 
@@ -207,7 +222,7 @@ function M.setup(opts)
       level = level or vim.log.levels.INFO
       opts = opts or {}
       local last = pending[#pending]
-      if last and last.msg == msg and last.level == level and last.opts.timeout == opts.timeout then
+      if last and last.msg == msg and last.level == level then
         last.count = last.count + 1
       else
         pending[#pending + 1] = { msg = msg, level = level, opts = opts, count = 1 }
