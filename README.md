@@ -6,7 +6,17 @@ This plugin overrides Neovim's `vim.notify` function. Based on the value of `vim
 
 ## Installation
 
-Assuming the plugin is in the _runtimepath_, the setup function can be called with `require("cool-notifications").setup({})` (or with your preferred plugin manager). Currently, there are no available options, but support for customization will be added in future updates.  
+Assuming the plugin is in the _runtimepath_, the setup function can be called with `require("cool-notifications").setup({...})` (or with your preferred plugin manager).  
+
+## Features
+
+Through `opts`, you can configure features:
+
+- `debug_color`: the color used for debug notifications (default: `"#3271a8"`)
+- `error_color`: the color used for error notifications (default: `"#b53a46"`)
+- `info_color`: the color used for info notifications (default: `"#44cf38"`)
+- `warn_color`: the color used for warning notifications (default: `"#f8ff36"`)
+- `trace_color`: the color used for trace notifications (default: `"#5d28d1"`)
 
 ## AI Usage
 
